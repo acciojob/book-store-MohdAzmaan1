@@ -31,9 +31,8 @@ public class BookRepository {
     }
 
     public Book save(Book book){
-        book.setId(id);
+        book.setId(id++);
         bookList.add(book);
-        id++;
         return book;
     }
 
