@@ -5,11 +5,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class BookRepository {
-    public BookRepository() {
-    }
 
-    private List<Book> bookList = new ArrayList<>();
-    private int id = 1;
+    private List<Book> bookList;
+    private int id;
+
+    public BookRepository() {
+        this.bookList = new ArrayList<>();
+        this.id = 1;
+    }
 
     public List<Book> getBookList() {
         return bookList;
