@@ -16,11 +16,11 @@ public class BookService {
     }
 
     public Book findBookById(String id){
-        return bookRepository.findBookById(id);
+        return bookRepository.findBookById(Integer.parseInt(id));
     }
 
     public void deleteBookById(String id){
-        bookRepository.deleteBookById(id);
+        bookRepository.deleteBookById(Integer.parseInt(id));
     }
 
     public List<Book> findAllBooks(){
