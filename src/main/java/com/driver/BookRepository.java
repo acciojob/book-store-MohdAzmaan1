@@ -37,9 +37,9 @@ public class BookRepository {
         return book;
     }
 
-    public Book findBookById(String id){
+    public Book findBookById(int id){
         for(Book book : bookList){
-            if(book.getId()==Integer.parseInt(id))
+            if(book.getId()==id)
                 return book;
         }
         return null;
@@ -50,9 +50,9 @@ public class BookRepository {
         return bookList;
     }
 
-    public void deleteBookById(String id){
+    public void deleteBookById(int id){
         for(int i=0;i<bookList.size();i++){
-            if(bookList.get(i).getId()==Integer.parseInt(id)){
+            if(bookList.get(i).getId()==id){
                 bookList.remove(bookList.get(i));
             }
         }

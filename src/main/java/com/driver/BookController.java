@@ -21,13 +21,13 @@ public class BookController {
     }
 
     @GetMapping("/get-book-by-id/{id}")
-    public ResponseEntity<Book> findBookById(@PathVariable("id") String id){
+    public ResponseEntity<Book> findBookById(@PathVariable("id") int id){
         Book book = bookService.findBookById(id);
         return new ResponseEntity<>(book,HttpStatus.FOUND);
     }
 
     @DeleteMapping("/delete-book-by-id/{id}")
-    public ResponseEntity<String> deleteBookById(@PathVariable("id") String id){
+    public ResponseEntity<String> deleteBookById(@PathVariable("id") int id){
         bookService.deleteBookById(id);
         return new ResponseEntity<>("Deleted", HttpStatus.ACCEPTED);
     }
