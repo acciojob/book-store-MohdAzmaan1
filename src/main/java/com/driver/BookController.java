@@ -14,7 +14,6 @@ public class BookController {
     @Autowired
     BookService bookService;
 
-    // One example controller, make the rest by yourself
     @PostMapping("/create-book")
     public ResponseEntity<Book> createBook(@RequestBody Book book){
         Book newbook = bookService.createBook(book);
@@ -22,7 +21,7 @@ public class BookController {
     }
 
     @GetMapping("/get-book-by-id/{id}")
-    public ResponseEntity<Book> findBookById(@PathVariable String id){
+    public ResponseEntity<Book> findBookById(@PathVariable("id") String id){
         Book book = bookService.findBookById(id);
         return new ResponseEntity<>(book,HttpStatus.FOUND);
     }

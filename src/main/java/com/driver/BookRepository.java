@@ -31,14 +31,15 @@ public class BookRepository {
     }
 
     public Book save(Book book){
-        book.setId(id++);
+        book.setId(id);
         bookList.add(book);
+        id++;
         return book;
     }
 
-    public Book findBookById(int id){
+    public Book findBookById(String id){
         for(Book book : bookList){
-            if(book.getId()==id)
+            if(book.getId()==Integer.parseInt(id))
                 return book;
         }
         return null;
@@ -49,9 +50,9 @@ public class BookRepository {
         return bookList;
     }
 
-    public void deleteBookById(int id){
+    public void deleteBookById(String id){
         for(int i=0;i<bookList.size();i++){
-            if(bookList.get(i).getId()==id){
+            if(bookList.get(i).getId()==Integer.parseInt(id)){
                 bookList.remove(bookList.get(i));
             }
         }
