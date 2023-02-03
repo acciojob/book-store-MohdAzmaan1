@@ -6,65 +6,39 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class BookRepository {
 
-    private List<Book> bookList;
+    HashMap<Integer, Book> dbBook;
     private int id;
 
-    public BookRepository() {
-        this.bookList = new ArrayList<>();
-        this.id = 1;
-    }
-
-    public List<Book> getBookList() {
-        return bookList;
-    }
-
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public BookRepository(){
+        dbBook = new HashMap<>();
+        id = 1;
     }
 
     public Book save(Book book){
-        book.setId(id);
-        bookList.add(book);
+        book.setId(id); // l
+
+        dbBook.put(id, book);
+//        Book b = dbBook.get(id);
         id++;
+//        return b;
         return book;
+        //return dbBook.get(--id);
     }
 
     public Book findBookById(int id){
-        for(Book book : bookList){
-            if(book.getId()==id)
-                return book;
-        }
-        return null;
+        return dbBook.get(id);
     }
 
     public List<Book> findAll(){
-
-        return bookList;
-    }
-
-    public void deleteBookById(int id){
-        for(int i=0;i<bookList.size();i++){
-            if(bookList.get(i).getId()==id){
-                bookList.remove(bookList.get(i));
-            }
-        }
-    }
-
-    public void deleteAll(){
-        bookList.clear();
+        List<Book> list = new ArrayList<>();
+        for(Book book : dbBook.values())
+            list.add(book);
+        return list;
     }
 
     public List<Book> findBooksByAuthor(String author){
         List<Book> list = new ArrayList<>();
-        for(Book book : bookList){
+        for(Book book : dbBook.values()){
             if(book.getAuthor().equals(author))
                 list.add(book);
         }
@@ -73,10 +47,20 @@ public class BookRepository {
 
     public List<Book> findBooksByGenre(String genre){
         List<Book> list = new ArrayList<>();
-        for(Book book : bookList){
-            if(book.getAuthor().equals(genre))
+        for(Book book : dbBook.values()){
+            if(book.getGenre().equals(genre))
                 list.add(book);
         }
         return list;
     }
+
+    public void deleteBookById(int id){
+//        if(dbBook.containsKey(id));
+        dbBook.remove(id);
+    }
+
+    public void deleteAll(){
+        dbBook.clear();
+    }
+
 }
